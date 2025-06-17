@@ -1,0 +1,8 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# Run lint-staged
+npx lint-staged
+
+# Run tests
+npm test -- --bail --findRelatedTests $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') 
